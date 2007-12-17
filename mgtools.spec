@@ -12,7 +12,6 @@ Source:		ftp://ftp.inria.fr/INRIA/Projects/Atoll/Eric.Clergerie/TAG/%{name}-%{ve
 Url:		http://atoll.inria.fr/packages/packages.html#mgtools
 Buildrequires:	libxml2-devel
 Buildrequires:	bison
-Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 mgtools collects several useful tools and scripts to edit and visualize Meta

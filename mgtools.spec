@@ -1,6 +1,6 @@
 %define name	mgtools
-%define version	1.0.1
-%define release	%mkrel 5
+%define version	2.2.1
+%define release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -8,8 +8,8 @@ Release:	%{release}
 Summary:	Tools and scripts to edit and visualize Meta Grammars
 License:	GPL
 Group:		Sciences/Computer science
-Source:		ftp://ftp.inria.fr/INRIA/Projects/Atoll/Eric.Clergerie/TAG/%{name}-%{version}.tar.bz2
-Url:		http://atoll.inria.fr/packages/packages.html#mgtools
+Source:		https://gforge.inria.fr/frs/download.php/5683/%{name}-%{version}.tar.gz
+Url:		http://alpage.inria.fr/catalogue.en.html#mgtools
 Buildrequires:	libxml2-devel
 Buildrequires:	bison
 Buildroot:	%{_tmppath}/%{name}-%{version}
@@ -30,7 +30,7 @@ Grammars
 
 %build
 export LDFLAGS=-L%{_libdir}/DyAlog
-%configure
+%configure2_5x
 %make
 
 %install
@@ -44,7 +44,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc INSTALL README
 %{_bindir}/*
-%{_datadir}/aclocal/%{name}.m4
+%{_libdir}/pkgconfig/mgtools.pc
 %{_datadir}/emacs/site-lisp/mg.el
-%{_datadir}/xslt
+%{_datadir}/mgtools
 

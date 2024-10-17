@@ -9,7 +9,7 @@ Summary:	Tools and scripts to edit and visualize Meta Grammars
 License:	GPL
 Group:		Sciences/Computer science
 Source:		https://gforge.inria.fr/frs/download.php/5683/%{name}-%{version}.tar.gz
-Url:		http://alpage.inria.fr/catalogue.en.html#mgtools
+Url:		https://alpage.inria.fr/catalogue.en.html#mgtools
 Buildrequires:	libxml2-devel
 Buildrequires:	bison
 Buildroot:	%{_tmppath}/%{name}-%{version}

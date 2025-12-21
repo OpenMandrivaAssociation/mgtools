@@ -10,6 +10,11 @@ License:	GPL
 Group:		Sciences/Computer science
 Source:		https://gforge.inria.fr/frs/download.php/5683/%{name}-%{version}.tar.gz
 Url:		https://alpage.inria.fr/catalogue.en.html#mgtools
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 Buildrequires:	libxml2-devel
 Buildrequires:	bison
 Buildroot:	%{_tmppath}/%{name}-%{version}

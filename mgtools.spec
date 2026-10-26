@@ -12,11 +12,10 @@ Source:		https://gforge.inria.fr/frs/download.php/5683/%{name}-%{version}.tar.gz
 Url:		https://alpage.inria.fr/catalogue.en.html#mgtools
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
 BuildRequires:	make
-Buildrequires:	libxml2-devel
-Buildrequires:	bison
+BuildRequires:	flex
+BuildRequires:	bison
+BuildRequires:	pkgconfig(libxml-2.0)
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -32,11 +31,19 @@ Grammars
 
 %prep
 %setup -q
+# libxml2 2.15 dropped AM_PATH_XML2. The makefiles still read both flag variables.
+sed -i 's|^AM_PATH_XML2$|PKG_CHECK_MODULES([XML], [libxml-2.0])\nXML_CPPFLAGS="$XML_CFLAGS"\nAC_SUBST([XML_CPPFLAGS])|' configure.ac
+# The encoding handler's input member is now a union.
+sed -i 's/handler->input(/handler->input.legacyFunc(/' parser.y
 
 %build
+# Implicit int and implicit declarations are errors in the compiler's
+# default language mode. An empty cache value keeps that mode off CC.
+export ac_cv_prog_cc_c23=
+export CFLAGS="%{build_cflags} -std=gnu17 -Wno-implicit-function-declaration -Wno-implicit-int -Wno-incompatible-pointer-types -Wno-int-conversion -Wno-deprecated-declarations"
 export LDFLAGS=-L%{_libdir}/DyAlog
-%configure2_5x
-%make
+%configure
+%make_build
 
 %install
 rm -rf %{buildroot}

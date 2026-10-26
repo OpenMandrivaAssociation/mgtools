@@ -1,6 +1,6 @@
 %define name	mgtools
 %define version	2.2.1
-%define release	3
+%define release	4
 
 Name:		%{name}
 Version:	%{version}
